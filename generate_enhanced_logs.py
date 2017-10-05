@@ -70,7 +70,7 @@ existing_traces = set()
 existing_trace_lengths = defaultdict(int)
 grouped = data.groupby(case_id_col)
 for name, group in grouped:
-    group = group.sort_values(timestamp_col)
+    group = group.sort_values(timestamp_col, ascending=True, kind="mergesort")
     existing_traces.add(tuple(group[activity_col]))
     existing_trace_lengths[len(group)] += 1
 
